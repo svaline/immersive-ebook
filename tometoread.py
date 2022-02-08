@@ -1,3 +1,8 @@
+'''
+So basically this is a mock up of taking in some different domain free stories as text files, check out the csv file I added to see which stories.
+This combines a mix of GUI and python inputs.
+
+'''
 import tkinter as tk
 import tkinter.scrolledtext as tkst
 from turtle import position
