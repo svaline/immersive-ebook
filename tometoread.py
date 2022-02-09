@@ -3,12 +3,13 @@ So basically this is a mock up of taking in some different domain free stories a
 This combines a mix of GUI and python inputs.
 
 '''
-import tkinter as tk
+from tkinter import *
 import tkinter.scrolledtext as tkst
 from turtle import position
 import pandas as pd
 import requests
 from io import StringIO
+import PyPDF2
 
 # url='https://raw.githubusercontent.com/colbychambers25/immersive-ebook/main/Domain_Free_eBook.csv'
 # book_library = pd.read_csv(url)
@@ -47,22 +48,36 @@ def populate_book_dictionary_prompt_user():
 
 
 def main():
-    window = tk.Tk()
+    i=25
+
+    # James - I turned the story variable into a whole function that RETURNS story
+    story = populate_book_dictionary_prompt_user()
+    pages=story.strip().splitlines()
+    print(len(pages))
+    final_pages = []
+    '''
+    for page in pages:
+        if i%25 ==0 or i== len(pages)-1:
+            final_pages.append(page)
+            print(page)
+        i+=1
+    print(len(final_pages))
+    '''
+    window = Tk()
     window.title("Immersive Reading")
     window.configure(bg="gray")
-    window.geometry("650x700")
+    window.geometry("700x800")
 
-    frame = tk.Frame(window)
+    frame = Frame(window)
     frame.pack()
 
-    wid = 500
-    hei = 675
+    wid = 595
+    hei = 770
 
-    canvas = tk.Canvas(frame, bg="dark gray", width=wid, height=hei)
+    canvas = Canvas(bg="dark gray", width=wid, height=hei)
+    canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
-    canvas.pack()
-
-    canvas.create_text(300, 60, text=populate_book_dictionary_prompt_user(), fill="black", font=('Helvetica 8'))
+    text = canvas.create_text(300, 100, text=story, fill="black", font=('Times 15'),width=430)
     canvas.pack()
 
     window.mainloop()
