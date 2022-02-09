@@ -9,10 +9,9 @@ from turtle import position
 import pandas as pd
 import requests
 from io import StringIO
-import requests
 
-url='https://raw.githubusercontent.com/colbychambers25/immersive-ebook/main/Domain_Free_eBook.csv'
-book_library = pd.read_csv(url)
+# url='https://raw.githubusercontent.com/colbychambers25/immersive-ebook/main/Domain_Free_eBook.csv'
+# book_library = pd.read_csv(url)
 
 def get_from_library(target_url):
     response = requests.get(target_url)
@@ -20,37 +19,56 @@ def get_from_library(target_url):
     return(data)
 
 
-diction = {}
-i = 0
-for row in book_library['Title']:
-    diction[book_library['Title'][i]] = i
-    print(diction)
-    i+=1
-print("Which book would you like to read?")
-print(book_library["Title"])
-book_to_get = str(input())
-index = diction[book_to_get]
-story = get_from_library(target_url = book_library['URL'][index])
+# make this function an actual page on the tkinter page, prompts the user on the
+# window to type in the wanted ebook. Show the available options of ebooks
 
-window = tk.Tk()
-window.title("Immersive Reading")
-window.configure(bg="gray")
-window.geometry("650x700")
+def populate_book_dictionary_prompt_user():
+    '''
+    This function populates a dictionary of Title : URL pairs that are retrieved from a csv
+    file. The csv file is read using pd.read_csv and then the key value pairs are added to a dictionary.
+    The user is prompted in the tkinter window to select from a certain amount of stories to read.
+    This dictionary is then used to make a request to the url value to get the story that the user
+    wants to read. 
+    '''
+    url='https://raw.githubusercontent.com/colbychambers25/immersive-ebook/main/Domain_Free_eBook.csv'
+    book_library = pd.read_csv(url)
+    diction = {}
+    library_str = ''
+    for i,title in enumerate(book_library['Title']):
+        diction[book_library['Title'][i]] = book_library.iloc[i]['URL']
+        library_str += title + "\n"
+        # print(diction) checking if its processing correctly
+    
+    print("Which book would you like to read?") # Asking user for input
+    print(library_str) # Prints out the library to the user
+    book_to_get = str(input())
+    story = get_from_library(target_url = diction[book_to_get])
+    return story
 
-frame = tk.Frame(window)
-frame.pack()
 
-wid = 500
-hei = 675
+def main():
+    window = tk.Tk()
+    window.title("Immersive Reading")
+    window.configure(bg="gray")
+    window.geometry("650x700")
 
-canvas = tk.Canvas(frame, bg="dark gray", width=wid, height=hei)
-canvas.config(highlightthickness=0)
-canvas.pack()
+    frame = tk.Frame(window)
+    frame.pack()
 
-canvas.create_text(300, 60, text=story, fill="black", font=('Helvetica 8'))
-canvas.pack()
+    wid = 500
+    hei = 675
 
-window.mainloop()
+    canvas = tk.Canvas(frame, bg="dark gray", width=wid, height=hei)
+    canvas.config(highlightthickness=0)
+    canvas.pack()
+
+    canvas.create_text(300, 60, text=populate_book_dictionary_prompt_user(), fill="black", font=('Helvetica 8'))
+    canvas.pack()
+
+    window.mainloop()
+
+if __name__ == "__main__":
+    main()
 '''
 window = tk.Tk()
 window.title("Immersive Reading")
