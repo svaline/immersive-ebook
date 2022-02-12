@@ -73,8 +73,6 @@ def pages(window,final_pages, forward_back):
     canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
     text = canvas.create_text(300, 400, text=final_pages[window.counter] if moderator == False else thanks(window), fill="black", font=('Times 17'),width=430, )
-    '''if moderator == True:
-        thanks(window)'''
     print(window.counter)
 
 
@@ -144,58 +142,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-
-# below is reference code and possible implementation code please dont remove just ignre for now
-'''
-window = tk.Tk()
-window.title("Immersive Reading")
-window.configure(bg="gray")
-window.geometry("650x700")
-
-frame = tk.Frame(window)
-frame.pack()
-
-wid = 500
-hei = 675
-
-canvas = tk.Canvas(frame, bg="dark gray", width=wid, height=hei)
-canvas.config(highlightthickness=0)
-canvas.pack()
-
-btn = tk.Button(
-    window,
-    text="My Button",
-    height=2,
-    width=10,
-)
-
-btn.pack(side="left")
-btn.place(x=10, y=hei / 2)
-
-window.mainloop()
-'''
-'''
-print(len(pages))
-final_pages=[]
-i=0
-for page in pages:
-    if i%30 ==0:
-        final_pages.append(pages[i-30:i+1])
-    elif i == len(pages):
-        final_pages.append(pages[i-30:])
-    i+=1
-'''
-'''
-pages_list = []
-print(final_pages)
-for page in final_pages:
-    new_str = ''
-    for line in page: 
-        #print(line)
-        new_str+= line
-    #print(new_str)
-    pages_list.append(new_str)
-#print(final_pages[8])
-print(pages_list[3])
-'''
