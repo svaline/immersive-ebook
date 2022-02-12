@@ -73,10 +73,6 @@ def pages(window,final_pages, forward_back):
     canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
     text = canvas.create_text(300, 400, text=final_pages[window.counter] if moderator == False else thanks(window), fill="black", font=('Times 17'),width=430, )
-    '''if moderator == True:
-        thanks(window)'''
-    
-
     print(window.counter)
 
 
