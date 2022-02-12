@@ -64,7 +64,16 @@ def pages(window,final_pages, forward_back):
     '''
     #think of adding mp3 call functions based on page here. 
     #Something like mp3_play(window, window.counter, volume_on == true)
-    pass 
+    if forward_back == "back":
+        window.counter -= 1
+    if forward_back == "adv" and window.counter != len(final_pages):
+        window.counter += 1
+    moderator = len(final_pages) <= window.counter
+    canvas = Canvas(bg="dark gray", width=595, height=770)
+    canvas.place(relx=.5, rely=.5, anchor=CENTER)
+    canvas.config(highlightthickness=0)
+    text = canvas.create_text(300, 400, text=final_pages[window.counter] if moderator == False else thanks(window), fill="black", font=('Times 17'),width=430, )
+    print(window.counter)
 
 
 def thanks(window):
