@@ -56,7 +56,7 @@ def diction():
     return final_pages
 
 
-def pages(window,final_pages, for_back):
+def pages(window,final_pages, forward_back):
     '''
     This creates the pages of the tkinter pop up. Currently only works for
     the story Drifting Towards Purpose as the others text files are not formatted
@@ -64,19 +64,19 @@ def pages(window,final_pages, for_back):
     '''
     #think of adding mp3 call functions based on page here. 
     #Something like mp3_play(window, window.counter, volume_on == true)
-    if for_back == 'back':
+    if forward_back == "back":
         window.counter -= 1
+    if forward_back == "adv" and window.counter != len(final_pages):
+        window.counter += 1
     moderator = len(final_pages) <= window.counter
     canvas = Canvas(bg="dark gray", width=595, height=770)
     canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
-    if moderator == False:
-        text = canvas.create_text(300, 400, text=final_pages[window.counter], fill="black", font=('Times 17'),width=430, )
-    else:
-        thanks(window)
-    if for_back == 'adv':
-        window.counter += 1
+    text = canvas.create_text(300, 400, text=final_pages[window.counter] if moderator == False else thanks(window), fill="black", font=('Times 17'),width=430, )
+    '''if moderator == True:
+        thanks(window)'''
     print(window.counter)
+
 
 def thanks(window):
     '''
