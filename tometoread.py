@@ -133,7 +133,7 @@ def main():
     window.geometry("900x800")
     frame = Frame(window)
     frame.pack()
-    window.counter = 0 #this is universal counter funtion that allows a user to traverse a story.
+    window.counter = -1 #this is universal counter funtion that allows a user to traverse a story.
     adv_button(window, final_pages)
     back_button(window, final_pages)
     welcome_screen() #this prevents a blank window from showing up at start up
