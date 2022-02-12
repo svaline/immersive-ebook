@@ -56,7 +56,7 @@ def diction():
     return final_pages
 
 
-def pages(window,final_pages):
+def pages(window,final_pages, for_back):
     '''
     This creates the pages of the tkinter pop up. Currently only works for
     the story Drifting Towards Purpose as the others text files are not formatted
@@ -64,15 +64,19 @@ def pages(window,final_pages):
     '''
     #think of adding mp3 call functions based on page here. 
     #Something like mp3_play(window, window.counter, volume_on == true)
+    if for_back == 'back':
+        window.counter -= 1
     moderator = len(final_pages) <= window.counter
     canvas = Canvas(bg="dark gray", width=595, height=770)
     canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
     if moderator == False:
-        text = canvas.create_text(300, 400, text=final_pages[window.counter], fill="black", font=('Times 16'),width=430, )
+        text = canvas.create_text(300, 400, text=final_pages[window.counter], fill="black", font=('Times 17'),width=430, )
     else:
         thanks(window)
-    window.counter += 1
+    if for_back == 'adv':
+        window.counter += 1
+    print(window.counter)
 
 def thanks(window):
     '''
@@ -81,7 +85,8 @@ def thanks(window):
     canvas = Canvas(bg="dark gray", width=595, height=770)
     canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
-    text = canvas.create_text(300, 400, text="Thank you For Reading", fill="black", font=('Times 16'),width=430)
+    text = canvas.create_text(300, 400, text="Thank you For Reading", fill="black", font=('Times 25'),width=430)
+
 
 def welcome_screen():
     '''
@@ -91,7 +96,31 @@ def welcome_screen():
     canvas = Canvas(bg="dark gray", width=595, height=770)
     canvas.place(relx=.5, rely=.5, anchor=CENTER)
     canvas.config(highlightthickness=0)
-    text = canvas.create_text(300, 400, text=title_line, fill="black", font=('Times 16'),width=430)
+    text = canvas.create_text(300, 400, text=title_line, fill="black", font=('Times 25'),width=430)
+
+def adv_button(window,final_pages):
+    adv = 'adv'
+    btn = Button(
+    window,
+    text="->",
+    height=3,
+    width=3,
+    command = lambda: pages(window,final_pages,adv)
+    )
+    btn.pack(side="right")
+    btn.place(relx=.5, rely=.5,x=400, anchor=CENTER)
+
+def back_button(window,final_pages):
+    back = "back"
+    btn2 = Button(
+    window,
+    text="<-",
+    height=3,
+    width=3,
+    command = lambda: pages(window,final_pages,back)
+    )
+    btn2.pack(side="right")
+    btn2.place(relx=.5, rely=.5,x=340, anchor=CENTER)
 
 def main():
     ''' 
@@ -107,15 +136,8 @@ def main():
     frame = Frame(window)
     frame.pack()
     window.counter = 0 #this is universal counter funtion that allows a user to traverse a story.
-    btn = Button(
-    window,
-    text="->",
-    height=4,
-    width=4,
-    command = lambda: pages(window,final_pages)
-    ) #advance button, back button is in the works.
-    btn.pack(side="right")
-    btn.place(x=820, y= 800/ 2)
+    adv_button(window, final_pages)
+    back_button(window, final_pages)
     welcome_screen() #this prevents a blank window from showing up at start up
     window.mainloop() #basically refreshes the window
     
@@ -124,7 +146,7 @@ if __name__ == "__main__":
 
 
 
-# below is reference code and possible implementation code please dont remove just ignore for now
+# below is reference code and possible implementation code please dont remove just ignre for now
 '''
 window = tk.Tk()
 window.title("Immersive Reading")
