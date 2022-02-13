@@ -64,7 +64,7 @@ def pages(window,final_pages, forward_back):
     '''
     #think of adding mp3 call functions based on page here. 
     #Something like mp3_play(window, window.counter, volume_on == true)
-    if forward_back == "back":
+    if forward_back == "back" and window.counter > 0:
         window.counter -= 1
     if forward_back == "adv" and window.counter != len(final_pages):
         window.counter += 1
