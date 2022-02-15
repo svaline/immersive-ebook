@@ -2,7 +2,7 @@
 TITLE: Tome To Read
 AUTHORS: ...
 DESCRIPTION: So far this is the ereader. Right now we need a function to prep pre uploaded files, but
-                for now this function works on "Drifting Towards Purpose".
+                for now this function works on all but The Raven and A Little Journey.
 NOTES: 1. There are some imports that im not sure are doing anything.
         2. Main is way to long. I think i need a fuction for our buttons.
         3. Text files work way better for formatting in Tkinter.
