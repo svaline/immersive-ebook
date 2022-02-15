@@ -4,11 +4,20 @@ AUTHORS: ...
 DESCRIPTION: So far this is the ereader. Right now we need a function to prep pre uploaded files, but
                 for now this function works on "Drifting Towards Purpose".
 NOTES: 1. There are some imports that im not sure are doing anything.
-        2. Main is way to long. I think i need a fuction for our buttons.
-        3. Text files work way better for formatting in Tkinter.
+        2. Main is way to long. I think i need a fuction for our buttons. -- Function made by Colby for buttons
+        3. Text files work way better for formatting in Tkinter. 
         4. We need a function that reads .txt files and adds "---split---" between pages.
-        5. Sorry James for taking out what you had changed I just was having trouble with getting
-             the window to work on my computer and I am not sure why lol.
+ISSUES:
+    1. Figure out a way for pdf reading to be processed much easier:
+        Potential solutions: 
+        1. Convert the pdf files into txt files and add ---split--- between pages 
+        2. Take in only txt files, add ---split--- between pages 
+            (if a txt file is uploaded without the indicator, how can we determine whats a new page?)
+    2. Figure out how to process mp3 files to be played in the background
+    3. Figure out how to link the pages between each other, either through multiple files or through multiple
+        functions within the main file.
+    4. Pack things into functions, ideally we don't want our main function to be unnecessarily long.
+    5. .... add more issues as we progress
 '''
 from tkinter import *
 import tkinter.scrolledtext as tkst
@@ -16,8 +25,6 @@ from turtle import position
 import pandas as pd
 import requests
 from io import StringIO
-import PyPDF2
-import json
 from sys import version_info
 
 url='https://raw.githubusercontent.com/colbychambers25/immersive-ebook/main/Domain_Free_eBook.csv'
@@ -128,7 +135,7 @@ def main():
     '''
     final_pages = diction()
     window = Tk()
-    window.title("Immersive Reading")
+    window.title("Tome to Read")
     window.configure(bg="gray")
     window.geometry("900x800")
     frame = Frame(window)
