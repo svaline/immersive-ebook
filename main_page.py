@@ -4,6 +4,13 @@ main page
 
 from tkinter import *
 from tkinter import ttk
+import pygame
+
+sound = "bensound-theelevatorbossanova.mp3"
+
+pygame.mixer.init()# initialise the pygame
+pygame.mixer.music.load(sound)
+pygame.mixer.music.play(loops=3000)
 
 def menu():
     '''
