@@ -1,16 +1,26 @@
 '''
-main page
+Author: Sarah Valine
+Main Page: This opens up the main page and contains the buttons
+that will lead to the various pages of the app. It also has the logo
+and will play music in the background.
+
+Has:
+Buttons to go  to settings, library, and upload pages.
+Logo
+royalty free music lightly playing in background
 '''
 
 from tkinter import *
 from tkinter import ttk
 import pygame
 
-sound = "bensound-theelevatorbossanova.mp3"
 
-pygame.mixer.init()# initialise the pygame
-pygame.mixer.music.load(sound)
-pygame.mixer.music.play(loops=3000)
+sound = "bensound-theelevatorbossanova.mp3"
+LARGEFONT =("Verdana", 35)
+
+pygame.mixer.init() # initialise the pygame
+pygame.mixer.music.load(sound) # loads the mp3 file
+pygame.mixer.music.play(loops=3000) # continues playing it
 
 def menu():
     '''
@@ -18,9 +28,9 @@ def menu():
     that will lead to the various pages of the app. It also has the logo
     and will play music in the background.
 
-    Needs to have:
+    has:
     Buttons to go  to settings, library, and upload pages.
-    Logo ( James will make logo)
+    Logo
     royalty free music lightly playing in background
     '''
 
